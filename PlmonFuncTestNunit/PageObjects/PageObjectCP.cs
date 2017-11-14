@@ -85,7 +85,7 @@ namespace PlmonFuncTestNunit.PageObjects
         [FindsBy(How = How.Id, Using = "imgBtnSearch")]
         public IWebElement BtnSearchACt { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "#LeftMenu_ControlLeftMenuYSTreeView1 > ul > li > ul > li> div > a")]
+        [FindsBy(How = How.CssSelector, Using = "#ControlPanelLeftNavigation_ControlPanelLeftNav > ul > li.rtLI > div > a")]
         public IList<IWebElement> LinksLeft { get; set; }
 
         [FindsBy(How = How.Id, Using = "ControlPanelLeftNavigation_lblTitle")]
@@ -99,7 +99,12 @@ namespace PlmonFuncTestNunit.PageObjects
             SwitchToFrameHelper.ToMainFrame(driver);
 
         }
- 
+        public void SwitchToCPMenu()
+        {
+            SwitchToFrameHelper.ToDefaultContext(driver);
+            SwitchToFrameHelper.ToControlPanelMenu(driver);
+
+        }
 
 
         public void AddRowCancel()
@@ -119,6 +124,7 @@ namespace PlmonFuncTestNunit.PageObjects
 
         public void CheckLeftMenuDirectory(string hrefLink)
         {
+            SwitchToCPMenu();
             int j = 0;
             for (int i = 0; i < LinksLeft.Count; i++)
             {
