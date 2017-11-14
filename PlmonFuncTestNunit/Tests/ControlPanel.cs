@@ -58,7 +58,7 @@ namespace PlmonFuncTestNunit.Tests
             var deskCP = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
             deskCP.labelTitle();
 
-            deskCP.CheckLeftMenuDirectory("Control_PanelType.aspx?CPTID=61cd600c-6e2a-e111-adfb-000c29572dc5");
+            deskCP.CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");
 
         }
 

@@ -1,3 +1,6 @@
 PlmonFuncTestNunit/Downloads
-PlmonFuncTestNunit/Reports/Screens
-PlmonFuncTestNunit/Reports
+PlmonFuncTestNunit/bin
+PlmonFuncTestNunit/obj
+.vs/
+log
+DataLakeTemp
