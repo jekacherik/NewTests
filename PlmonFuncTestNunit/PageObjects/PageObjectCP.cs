@@ -25,7 +25,7 @@ namespace PlmonFuncTestNunit.PageObjects
         [FindsBy(How = How.CssSelector, Using = "#btnAdd > div > span")]
         public IWebElement AddRow { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "#btnSave > div > span")]
+        [FindsBy(How = How.Id, Using = "btnSave")]
         public IWebElement btnSave { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#btnRemove > div > span")]
@@ -95,6 +95,11 @@ namespace PlmonFuncTestNunit.PageObjects
         [FindsBy(How = How.CssSelector, Using = "li:nth-child(3)>ul>li>div>a")]
         public IList<IWebElement> CpMeasuremntsItems { get; set; }
 
+        [FindsBy(How = How.Id, Using = "btnSort")]
+        public IWebElement BtnSort { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id,'datagrid1_ctl')]")]
+        public IList<IWebElement> SortTextBoxes { get; set; }
 
         public void SwitchToMain()
         {
@@ -123,6 +128,12 @@ namespace PlmonFuncTestNunit.PageObjects
 
         }
 
+
+        public void CheckSorting()
+        {
+            CheckSortButton sortButton = new CheckSortButton();
+            sortButton.CheckSortingFunctionality(BtnSort,SortTextBoxes,btnSave);
+        }
 
 
         public void CheckLeftMenuDirectory(string hrefLink)
