@@ -12,10 +12,13 @@ using PlmonFuncTestNunit.Helpers;
 using System.IO;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using PlmonFuncTestNunit.TestsInputData;
+using PlmonFuncTestNunit.Base_Classes;
+using PlmonFuncTestNunit.TestsInputData.ControlPanel;
 
 namespace PlmonFuncTestNunit.Tests
 {
-    [TestFixture("Chrome", "ET")]
+    [TestFixture("Chrome", "IT")]
 
     //[Parallelizable]
     public class ControlPanel : PropertiesCollection
@@ -62,6 +65,28 @@ namespace PlmonFuncTestNunit.Tests
 
         }
 
+        [Test, Category("Function test Open CP")]
+        [TestCaseSource(typeof(TestDataSourceCp), nameof(TestDataSourceCp.GetInputDataForTest))]
+        public void CheckSearchInCp(InputDataCp dataInput)
+        {
+            if (!string.IsNullOrEmpty(dataInput.ReadingDataError)) Assert.Fail(dataInput.ReadingDataError);
+            if (!string.IsNullOrEmpty(dataInput.IgnoreReason)) Assert.Ignore(dataInput.IgnoreReason);
+
+            var deskCP = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
+            deskCP.labelTitle();
+            deskCP.CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");  // Measurements
+            for (int i = 0; i < deskCP.CpMeasuremntsItems.Count; i++)
+            {
+                deskCP.CpMeasuremntsItems[i].Click();
+                SeleniumGetMethod.WaitForPageLoad(driver);
+                deskCP.SwitchToMain();
+                deskCP.CheckSearchMeasCp(dataInput);
+                deskCP.SwitchToCPMenu();
+            }
+        }
+
+
+
 
         public static IEnumerable<TestCaseData> StyleData
         {
@@ -80,7 +105,24 @@ namespace PlmonFuncTestNunit.Tests
         }
 
     }
+        public class TestDataSourceCp
+        {
+            private static string XmlFileName { get; set; }
+            static TestDataSourceCp()
+            {
+                var testsConfig = TestsConfiguration.Instance;
 
+                string pathGl = Path.GetDirectoryName(System.Reflection.Assembly.GetCallingAssembly().CodeBase);
+                string path = pathGl.Substring(0, pathGl.IndexOf("bin")) + ("TestsInputData\\XMLData\\TestsCasesDataCp.xml");
+                string projectPth = new Uri(path).LocalPath;
+
+                XmlFileName = projectPth;
+                _getInputDataForTest = TestCasesDataLoader.Load<InputDataCp>(XmlFileName, nameof(ControlPanel.CheckSearchInCp));
+
+            }
+            private static Func<IEnumerable<TestCaseData>> _getInputDataForTest;
+            public static IEnumerable<TestCaseData> GetInputDataForTest() => _getInputDataForTest();
+        }
 
 
 }

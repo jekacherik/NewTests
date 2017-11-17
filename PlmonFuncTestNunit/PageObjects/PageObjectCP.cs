@@ -11,6 +11,7 @@ using System.IO;
 using System.Reflection;
 using PlmonFuncTestNunit.Helpers;
 using NUnit.Framework;
+using PlmonFuncTestNunit.TestsInputData.ControlPanel;
 
 namespace PlmonFuncTestNunit.PageObjects
 {
@@ -91,20 +92,22 @@ namespace PlmonFuncTestNunit.PageObjects
         [FindsBy(How = How.Id, Using = "ControlPanelLeftNavigation_lblTitle")]
         public IWebElement spanCP { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "li:nth-child(3)>ul>li>div>a")]
+        public IList<IWebElement> CpMeasuremntsItems { get; set; }
+
 
         public void SwitchToMain()
         {
             SwitchToFrameHelper.ToDefaultContext(driver);
-            SwitchToFrameHelper.ToMainBody(driver);
-            SwitchToFrameHelper.ToMainFrame(driver);
-
+            SwitchToFrameHelper.ToControlPanelDictionary(driver);
         }
+
         public void SwitchToCPMenu()
         {
             SwitchToFrameHelper.ToDefaultContext(driver);
             SwitchToFrameHelper.ToControlPanelMenu(driver);
-
         }
+
 
 
         public void AddRowCancel()
@@ -146,6 +149,15 @@ namespace PlmonFuncTestNunit.PageObjects
             string path = new Uri(path2).LocalPath;
             string jsString = File.ReadAllText(path);
             executor.ExecuteScript(jsString.Replace("@", j.ToString()));
+        }
+
+
+        public void CheckSearchMeasCp(InputDataCp dataInput)
+        {
+            //Open CP in menu
+            CheckSearchForm check = new CheckSearchForm();
+            string fields = "div.mdl-grid.mdl-components-index-text > div > div >input, div.mdl-grid.mdl-components-index-text > div > div >select, div.mdl-color--white.mdl-content-header-wrap.mdl-grid > div >select, div.section-body-wrapper.m-0.p-0 > div.mdl-grid.mdl-components-index-text input, div.section-body-wrapper.m-0.p-0 > div.mdl-grid.mdl-components-index-text input,select";
+            check.CheckSearchFunctionality(fields, dataInput.TxtSearchName);
         }
 
 

@@ -115,6 +115,7 @@
     <Compile Include="Base Classes\TestsConfiguration.cs" />
     <Compile Include="Base Classes\WebDriverFactory.cs" />
     <Compile Include="DB connectors\PostGreSQL.cs" />
+    <Compile Include="Helpers\CheckSearchForm.cs" />
     <Compile Include="Helpers\FileUploader.cs" />
     <Compile Include="Helpers\Paging.cs" />
     <Compile Include="Helpers\Randomizer.cs" />
@@ -140,6 +141,7 @@
       <DependentUpon>AutomationSettings.resx</DependentUpon>
     </Compile>
     <Compile Include="PageObjects\MenuPageObject.cs" />
+    <Compile Include="TestsInputData\ControlPanel\InputDataCp.cs" />
     <Compile Include="TestsInputData\ExelUnit.cs" />
     <Compile Include="TestsInputData\Style\InputData.cs" />
     <Compile Include="TestsInputData\Style\StyleHeaderData.cs" />

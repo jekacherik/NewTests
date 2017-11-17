@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<testCasesData>
+  <testCaseDataItem>
+    <testMethodName>CheckSearchInCp</testMethodName>
+    <testName>CheckSearchInCpXML</testName>
+    <category>Style</category>
+    <description>Check saved search for Max Value</description>
+	<inputData>
+    <txtCustomKey>aa</txtCustomKey>
+	</inputData>
+  </testCaseDataItem>
+</testCasesData>
+
