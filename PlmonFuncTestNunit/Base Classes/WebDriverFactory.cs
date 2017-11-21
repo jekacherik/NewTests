@@ -36,7 +36,7 @@ namespace PlmonFuncTestNunit.Base_Classes
                     break;
                 case "Edge":
                     EdgeOptions options = new EdgeOptions();
-                    options.PageLoadStrategy = EdgePageLoadStrategy.Normal;
+                  //  options.PageLoadStrategy = EdgePageLoadStrategy.Normal;
                     driver = new EdgeDriver(options);
                     driver.Manage().Window.Size = new Size(1920, 1080);
                     break;

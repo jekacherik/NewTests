@@ -101,6 +101,9 @@ namespace PlmonFuncTestNunit.PageObjects
         [FindsBy(How = How.XPath, Using = "//input[contains(@id,'datagrid1_ctl')]")]
         public IList<IWebElement> SortTextBoxes { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "#btnEditSample >a")]
+        public IWebElement EavEditorOpen { get; set; }
+
         public void SwitchToMain()
         {
             SwitchToFrameHelper.ToDefaultContext(driver);
@@ -132,8 +135,38 @@ namespace PlmonFuncTestNunit.PageObjects
         public void CheckSorting()
         {
             CheckSortButton sortButton = new CheckSortButton();
-            sortButton.CheckSortingFunctionality(BtnSort,SortTextBoxes,btnSave);
+            CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");  // Measurements
+            //deskCP.CheckLeftMenuDirectory("35d22856-6f2a-e111-adfb-000c29572dc5");  // MatSubTypes
+            for (int i = 0; i < CpMeasuremntsItems.Count; i++)
+            {
+                CpMeasuremntsItems[i].Click();
+                SeleniumGetMethod.WaitForPageLoad(driver);
+                SwitchToMain();
+                        var deskCP = _pagesFactory.GetPage<MenuPageObject>();
+                        deskCP.LeftFrameExpander();
+                sortButton.CheckSortingFunctionality(BtnSort, SortTextBoxes, btnSave);
+                SwitchToCPMenu();
+            }
         }
+
+
+        public void OpenEavEditor()
+        {
+            OpenEavEntityEditor openEav = new OpenEavEntityEditor();
+            CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");  // Measurements
+            //CheckLeftMenuDirectory("35d22856-6f2a-e111-adfb-000c29572dc5");  // MatSubTypes
+            for (int i = 0; i < CpMeasuremntsItems.Count; i++)
+            {
+                CpMeasuremntsItems[i].Click();
+                SeleniumGetMethod.WaitForPageLoad(driver);
+                SwitchToMain();
+                            var deskCP = _pagesFactory.GetPage<MenuPageObject>();
+                            deskCP.LeftFrameExpander();
+                openEav.OpenEavEditor(EavEditorOpen);
+                SwitchToCPMenu();
+            }
+        }
+
 
 
         public void CheckLeftMenuDirectory(string hrefLink)

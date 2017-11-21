@@ -146,9 +146,23 @@ namespace PlmonFuncTestNunit.PageObjects
         [FindsBy(How = How.ClassName, Using = "row-datalist")]
         public IList<IWebElement> listlargeThumbnails { get; set; }
 
+        [FindsBy(How = How.Id, Using = "Style_Workflow1_btnPrint")]
+        public IWebElement prevButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = "ddlLanguage")]
+        public IWebElement prevLangDropDown { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//span[contains(@id,'ReportPage')]")]
+        public IList<IWebElement> prevReports { get; set; }
+
         //Medium Thumbnails 
         [FindsBy(How = How.Id, Using = "tb_2")]
         public IWebElement mediumThumbnails { get; set; }
+
+                //measlink in style
+        [FindsBy(How = How.CssSelector, Using = "#YSTreeView2 > ul > li.rtLI.rtFirst > ul > li:nth-child(2) > ul > li:nth-child(5) > div > a")]
+        public IWebElement measItem { get; set; }
+
 
 
         string recordsFound = "#ctrGrid_RecordCount > strong";
@@ -327,12 +341,38 @@ namespace PlmonFuncTestNunit.PageObjects
             //spanSearch.Click();
             btnSearch.Click();
         }
+
         public void CkeckSortGrid()
         {
             SwitchToMain();
             PropertiesCollection._reportingTasks.Log(Status.Info, "UserAuto Sort Style Grid");
             WebTable.ClickLinks(driver,table);   
         }
+
+        public void CheckPreview()
+        {
+                         //check preview in Measurements
+            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            SwitchToFrameHelper.ToDefaultContext(driver);
+            SwitchToFrameHelper.ToLeftMenu(driver);
+            if (SeleniumGetMethod.IsElementExists(driver, measItem))
+            {
+                measItem.Click();
+                SeleniumGetMethod.WaitForPageLoad(driver);
+                SwitchToFrameHelper.ToDefaultContext(driver);
+                SwitchToFrameHelper.ToMainFrame(driver);
+                IWebElement viewDropDown = driver.FindElement(By.Id("DataGrid1_ctl02_dpAction"));
+                SeleniumSetMethods.SelectDropDown(viewDropDown, 1);
+                SeleniumGetMethod.WaitForPageLoad(driver);
+                OpenPreview openPreview = new OpenPreview();
+                openPreview.GeneratePreviewPage(prevButton, prevLangDropDown, prevReports);
+            }
+            else
+            {
+                driver.Close();
+            }
+        }
+
         public void DragDrop()
         {
             SwitchToMain();

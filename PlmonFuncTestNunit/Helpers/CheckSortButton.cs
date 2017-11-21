@@ -15,6 +15,7 @@ using NUnit.Framework.Internal;
 using PlmonFuncTestNunit.PageObjects;
 using PlmonFuncTestNunit.TestsInputData.ControlPanel;
 using PlmonFuncTestNunit.TestsInputData.Style;
+using OpenQA.Selenium.Interactions;
 
 namespace PlmonFuncTestNunit.Helpers
 {
@@ -34,6 +35,23 @@ namespace PlmonFuncTestNunit.Helpers
                     {
                         sortTextBoxes[i].Clear();
                         sortTextBoxes[i].SendKeys(j.ToString());
+                    }
+                    try
+                    {
+                        IList<IWebElement> itemsToDrop = PropertiesCollection.driver.FindElements(By.XPath("//div[contains(@id,'datagrid1_')]"));
+                        if(itemsToDrop.Count > 1)
+                        {
+                            for(int x = 1; x < itemsToDrop.Count; x++ )
+                            {
+                                IWebElement drag = itemsToDrop[0];
+                                IWebElement drop = itemsToDrop[x];
+                                (new Actions(PropertiesCollection.driver)).ClickAndHold(drag).MoveToElement(drop).DragAndDrop(drag, drop).Perform();
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        PropertiesCollection._reportingTasks.Log(Status.Info, "Can't test drag and drop");
                     }
                 }
                 btnSave.Click();

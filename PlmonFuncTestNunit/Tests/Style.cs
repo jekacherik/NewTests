@@ -20,7 +20,7 @@ namespace PlmonFuncTestNunit.Tests
 {
     //[TestFixture("ie", "ET")]
     //[TestFixture("Edge", "ET")]
-    [TestFixture("Chrome", "ET")]
+    [TestFixture("Chrome", "IT")]
     //[Parallelizable]
     public class Style : PropertiesCollection
     {
@@ -51,8 +51,9 @@ namespace PlmonFuncTestNunit.Tests
             //pageStyle.CheckSearchMenu(dataInput);
             //pageStyle.DragDrop();
             //pageStyle.ClickByRightInStyleFolder();
-            pageStyle.CheckView();
-
+            //pageStyle.CheckView();
+            pageStyle.Style();
+            pageStyle.CheckPreview();
             //pageStyle.CkeckExcelBtn();
             //pageStyle.CkeckSortGrid();
 

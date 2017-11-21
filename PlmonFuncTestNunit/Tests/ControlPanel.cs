@@ -60,7 +60,6 @@ namespace PlmonFuncTestNunit.Tests
             //Open CP in menu
             var deskCP = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
             deskCP.labelTitle();
-
             deskCP.CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");
 
         }
@@ -85,23 +84,24 @@ namespace PlmonFuncTestNunit.Tests
             }
         }
 
+
         [Test, Category("Function test Open CP")]
         public void CheckSortInCp()
         {
             var deskCP = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
             deskCP.labelTitle();
-            deskCP.CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");  // Measurements
-            //deskCP.CheckLeftMenuDirectory("35d22856-6f2a-e111-adfb-000c29572dc5");  // MatSubTypes
-            for (int i = 0; i < deskCP.CpMeasuremntsItems.Count; i++)
-            {
-                deskCP.CpMeasuremntsItems[i].Click();
-                SeleniumGetMethod.WaitForPageLoad(driver);
-                deskCP.SwitchToMain();
-                deskCP.CheckSorting();
-                deskCP.SwitchToCPMenu();
-            }
+            deskCP.CheckSorting();
         }
 
+
+
+        [Test, Category("Function test Open CP")]
+        public void CheckOpenEavInCp()
+        {
+            var deskCP = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
+            deskCP.labelTitle();
+            deskCP.OpenEavEditor();
+        }
 
 
 
