@@ -18,7 +18,7 @@ namespace PlmonFuncTestNunit
         public MenuPageObject(PagesManager factory) : base(factory) { }
         public MenuPageObject(PagesManager factory, string windowHandle) : base(factory, windowHandle) { }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='LeftNavigation_GlobalListMenu']/ul/li[13]")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='LeftNavigation_GlobalListMenu']/ul/li[14]")]
         public IWebElement topMenuCP { get; set; }
 
         [FindsBy(How = How.Id, Using = "hambergerMenu")]

@@ -43,7 +43,7 @@ namespace PlmonFuncTestNunit.Helpers
                         {
                             for(int x = 1; x < itemsToDrop.Count; x++ )
                             {
-                                IWebElement drag = itemsToDrop[0];
+                                IWebElement drag = itemsToDrop[x-1];
                                 IWebElement drop = itemsToDrop[x];
                                 (new Actions(PropertiesCollection.driver)).ClickAndHold(drag).MoveToElement(drop).DragAndDrop(drag, drop).Perform();
                             }

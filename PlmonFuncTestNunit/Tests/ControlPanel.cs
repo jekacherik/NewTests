@@ -60,7 +60,7 @@ namespace PlmonFuncTestNunit.Tests
             //Open CP in menu
             var deskCP = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
             deskCP.labelTitle();
-            deskCP.CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");
+          //  deskCP.CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");
 
         }
 
@@ -73,7 +73,8 @@ namespace PlmonFuncTestNunit.Tests
 
             var deskCP = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
             deskCP.labelTitle();
-            deskCP.CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");  // Measurements
+            // deskCP.CheckLeftMenuDirectory("61cd600c-6e2a-e111-adfb-000c29572dc5");  // Measurements
+        //    deskCP.CheckLeftMenuDirectory("Measurements");
             for (int i = 0; i < deskCP.CpMeasuremntsItems.Count; i++)
             {
                 deskCP.CpMeasuremntsItems[i].Click();
