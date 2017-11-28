@@ -31,7 +31,7 @@ namespace PlmonFuncTestNunit
             SwitchToFrameHelper.ToMainBody(driver);
             SwitchToFrameHelper.ToLeftMenu(driver);
             PopupWindowFinder wndFinder = new PopupWindowFinder(driver);
-            Scrolling.ScrollToElement("#LeftNavigation_GlobalListMenu>ul>li:nth-child(13)>div");
+            Scrolling.ScrollToElement("#LeftNavigation_GlobalListMenu>ul>li:nth-child(15)>div");
             string newWndHandle = wndFinder.Click(topMenuCP);
             return new PageObjectCP(_pagesFactory, newWndHandle);
         }

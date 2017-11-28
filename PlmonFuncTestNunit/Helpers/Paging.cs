@@ -12,9 +12,9 @@ namespace PlmonFuncTestNunit.Helpers
 
         public int ItemsFound(IWebElement element)
         {
-            SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
+           /* SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
             SwitchToFrameHelper.ToMainBody(PropertiesCollection.driver);
-            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);
+            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);*/
 
             var result = Int32.Parse(element.Text);
             //PropertiesCollection._reportingTasks.Log(Status.Info, "ITEMS FOUND : " + result);
@@ -22,9 +22,9 @@ namespace PlmonFuncTestNunit.Helpers
         }
         public int SelectPerPage(IWebElement recordsFound, IWebElement dropdownSelectPerPage, IWebElement goArrow)
         {
-            SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
+           /* SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
             SwitchToFrameHelper.ToMainBody(PropertiesCollection.driver);
-            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);
+            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);*/
 
             int[] recOnPageArray = { 5, 10, 15, 20, 25, 30, 40, 50 };
             if (recOnPageArray[0] > ItemsFound(recordsFound))
@@ -54,9 +54,9 @@ namespace PlmonFuncTestNunit.Helpers
         }
         public int GetPagesQuantity(PagingData pagesQuantity)
         {
-            SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
+           /* SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
             SwitchToFrameHelper.ToMainBody(PropertiesCollection.driver);
-            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);
+            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);*/
 
             IWebElement pagesaQua = PropertiesCollection.driver.FindElement(By.CssSelector(pagesQuantity.pagesQua));
             string textPages = pagesaQua.Text;
@@ -68,9 +68,9 @@ namespace PlmonFuncTestNunit.Helpers
         }
         public string PageOfPagesLogic(PagingData pagesQuantity)
         {
-            SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
+           /* SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
             SwitchToFrameHelper.ToMainBody(PropertiesCollection.driver);
-            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);
+            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);*/
 
             IWebElement pagesaQua = PropertiesCollection.driver.FindElement(By.CssSelector(pagesQuantity.pagesQua));
             string textPages = pagesaQua.Text;
@@ -80,9 +80,9 @@ namespace PlmonFuncTestNunit.Helpers
         public int GetTableRecords(IList<IWebElement> rows)
 
         {
-            SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
+           /* SwitchToFrameHelper.ToDefaultContext(PropertiesCollection.driver);
             SwitchToFrameHelper.ToMainBody(PropertiesCollection.driver);
-            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);
+            SwitchToFrameHelper.ToMainFrame(PropertiesCollection.driver);*/
             int totalRows = rows.Count;
             PropertiesCollection._reportingTasks.Log(Status.Info, "There are rows in the grid...: " + totalRows);
             return totalRows;
