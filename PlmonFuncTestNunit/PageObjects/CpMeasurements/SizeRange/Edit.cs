@@ -13,7 +13,7 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.SizeRange
         [FindsBy(How = How.Id, Using = "txtSizeRangeCode")]
         public IWebElement txtSizeRangeCode { get; set; }
 
-        [FindsBy(How = How.Id, Using = "chbActive")]
+        [FindsBy(How = How.CssSelector, Using = "span.mdl-checkbox__ripple-container.mdl-js-ripple-effect.mdl-ripple--center")]
         public IWebElement chbActive { get; set; }
 
         [FindsBy(How = How.Id, Using = "linkBtnNavigateENV")]
@@ -28,6 +28,13 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.SizeRange
         [FindsBy(How = How.CssSelector, Using = "#DataGrid1 > tbody > tr > td:nth-child(4) input[type=radio]")]
         public IList<IWebElement> txtAllRadioButtons { get; set; }
 
+
+
+        [FindsBy(How = How.Id, Using = "btnSave")]
+        public IWebElement btnSave { get; set; }
+
+        [FindsBy(How = How.Id, Using = "btnSaveNew")]
+        public IWebElement btnSaveNew { get; set; }  
 
         [FindsBy(How = How.Id, Using = "menuExpanderHandle")]
         public IWebElement menuExpanderHandle { get; set; }
@@ -47,6 +54,10 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.SizeRange
         [FindsBy(How = How.Id, Using = "btnClose")]
         public IWebElement btnClose { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "#lblSampleRequired")]
+        public IWebElement validator { get; set; }
+
+      
 
     }
 }

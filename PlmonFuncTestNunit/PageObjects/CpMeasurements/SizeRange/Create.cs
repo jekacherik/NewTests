@@ -13,7 +13,7 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.SizeRange
         [FindsBy(How = How.Id, Using = "txtSizeRangeCode")]
         public IWebElement txtSizeRangeCode { get; set; }
 
-        [FindsBy(How = How.Id, Using = "chbActive")]
+        [FindsBy(How = How.CssSelector, Using = "span.mdl-checkbox__ripple-container.mdl-js-ripple-effect.mdl-ripple--center")]
         public IWebElement chbActive { get; set; }
 
         [FindsBy(How = How.Id, Using = "linkBtnNavigateENV")]
@@ -25,7 +25,7 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.SizeRange
         [FindsBy(How = How.CssSelector, Using = "[id*=txtSizeDesc]")]
         public IList<IWebElement> txtAllDescriptions { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "[id*=RadioButton],[id*=Radiobutton]")]
+        [FindsBy(How = How.CssSelector, Using = "span.mdl-radio__ripple-container.mdl-js-ripple-effect.mdl-ripple--center")]
         public IList<IWebElement> txtAllRadioButtons { get; set; }
         
         [FindsBy(How = How.Id, Using = "btnSave")]
@@ -33,5 +33,17 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.SizeRange
 
         [FindsBy(How = How.Id, Using = "btnClose")]
         public IWebElement btnClose { get; set; }
+
+                 // Modal
+        [FindsBy(How = How.Id, Using = "btnYes")]
+        public IWebElement btnYes { get; set; }
+
+        [FindsBy(How = How.Id, Using = "btnNo")]
+        public IWebElement btnNo { get; set; }
+
+
+        [FindsBy(How = How.CssSelector, Using = "#lblSampleRequired")]
+        public IWebElement validator { get; set; }
+
     }
 }

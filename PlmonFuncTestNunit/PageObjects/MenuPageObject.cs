@@ -18,7 +18,7 @@ namespace PlmonFuncTestNunit
         public MenuPageObject(PagesManager factory) : base(factory) { }
         public MenuPageObject(PagesManager factory, string windowHandle) : base(factory, windowHandle) { }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='LeftNavigation_GlobalListMenu']/ul/li[14]")]
+        [FindsBy(How = How.XPath, Using = "//*[@id='LeftNavigation_GlobalListMenu']/ul/li[13]")]
         public IWebElement topMenuCP { get; set; }
 
         [FindsBy(How = How.Id, Using = "hambergerMenu")]
@@ -31,7 +31,7 @@ namespace PlmonFuncTestNunit
             SwitchToFrameHelper.ToMainBody(driver);
             SwitchToFrameHelper.ToLeftMenu(driver);
             PopupWindowFinder wndFinder = new PopupWindowFinder(driver);
-            Scrolling.ScrollToElement("#LeftNavigation_GlobalListMenu>ul>li:nth-child(15)>div");
+            Scrolling.ScrollToElement("#LeftNavigation_GlobalListMenu>ul>li:nth-child(14)>div");
             string newWndHandle = wndFinder.Click(topMenuCP);
             return new PageObjectCP(_pagesFactory, newWndHandle);
         }

@@ -53,18 +53,18 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.SizeClass
         [FindsBy(How = How.Id, Using = "btnClose")]
         public IWebElement btnCloseInSort { get; set; }
 
-        //PagingData
-        string recordsFound = "#RecordCount b";
-        string dropdownSelectPerPage = "#ps";
-        string goButton = "Button1";
-        string pagesaQua = "#lblPageCount";
-        string nextPge = "btnImgNext";
-        string prevPage = "btnImgPrevious";
-        string lastPage = "btnImgLast";
-        string firstPage = "btnImgFirst";
-        /*string setGotoPage = "#ctrGrid_txtSkipToPg";
-        string goToSkipPage = "#ctrGrid_btnImgSkipTo";*/
-        string tableRecords = "#DataGrid1 > tbody > tr[onclick]";
+                    //PagingData
+        public string recordsFound = "#RecordCount b";
+        public string dropdownSelectPerPage = "#ps";
+        public string goButton = "Button1";
+        public string pagesaQua = "#lblPageCount";
+        public string nextPge = "btnImgNext";
+        public string prevPage = "btnImgPrevious";
+        public string lastPage = "btnImgLast";
+        public string firstPage = "btnImgFirst";
+        /*public string setGotoPage = "#ctrGrid_txtSkipToPg";
+        public string goToSkipPage = "#ctrGrid_btnImgSkipTo";*/
+        public string tableRecords = "#DataGrid1 > tbody > tr[onclick]";
 
 
         public PagingData SizeClassPaging

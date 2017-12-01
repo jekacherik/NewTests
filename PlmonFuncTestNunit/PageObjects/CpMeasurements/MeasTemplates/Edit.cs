@@ -49,6 +49,14 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.MeasTemplates
         [FindsBy(How = How.Id, Using = "btnPDFView")]
         public IWebElement btnPDFView { get; set; }
 
+        [FindsBy(How = How.Id, Using = "ddlLanguage")]
+        public IWebElement ddlLanguageInPreview { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "#DataGrid1 > tbody > tr > td a")]
+        public IList<IWebElement> allReportsInPreview { get; set; }
+
+
+
         [FindsBy(How = How.Id, Using = "menuExpanderHandle")]
         public IWebElement menuExpanderHandle { get; set; }
 
@@ -84,7 +92,7 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.MeasTemplates
         public IWebElement imgBtnSearchModal { get; set; }
 
         [FindsBy(How = How.CssSelector, Using = "#DataGrid1 > tbody > tr > td:nth-child(1) > label > span input")]
-        public IList<IWebElement> allCheckBoxesModal { get; set; }
+        public IList<IWebElement> allCheckBoxesModal2 { get; set; }
 
         //PagingData in MODAL WINDOW
         string recordsFound = "#RecordCount b";
@@ -102,7 +110,8 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.MeasTemplates
         [FindsBy(How = How.CssSelector, Using = "[class*=modalwindow] #btnSave")]
         public IWebElement btnSaveInModal { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "[class*=modalwindow] #btnClose")]
+        //[FindsBy(How = How.CssSelector, Using = "[class*=modalwindow] #btnClose")]
+        [FindsBy(How = How.CssSelector, Using = "div.mdl-layout__container > div > header > div > span.mdl-toolbar-button:nth-child(odd)")]
         public IWebElement btnCloseInModal { get; set; }
 
         [FindsBy(How = How.Id, Using = "btnPOMDelete")]
@@ -113,6 +122,10 @@ namespace PlmonFuncTestNunit.PageObjects.CpMeasurements.MeasTemplates
 
         [FindsBy(How = How.CssSelector, Using = "[type=checkbox][id*=chkDelete]")]
         public IList<IWebElement> allCheckboxesModal { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "tr.mdl-simple-datagrid-header label > span.mdl-checkbox__ripple-container.mdl-js-ripple-effect.mdl-ripple--center")]
+        public IWebElement cbSelectAllInSizeRange { get; set; }
+
 
         [FindsBy(How = How.Id, Using = "btnDelete")]
         public IWebElement btnDeleteModal { get; set; }

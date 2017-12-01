@@ -208,7 +208,9 @@
     <Compile Include="TestsInputData\Style\StyleHeaderData.cs" />
     <Compile Include="TestsInputData\TestCaseDataItem.cs" />
     <Compile Include="Tests\ControlPanel.cs" />
+    <Compile Include="Tests\GUI\CpMeasTemplate.cs" />
     <Compile Include="Tests\GUI\CpSizeClass.cs" />
+    <Compile Include="Tests\GUI\CpSizeRange.cs" />
     <Compile Include="Tests\Image.cs" />
     <Compile Include="Tests\Login.cs" />
     <Compile Include="PageObjects\LoginPageObjects.cs" />

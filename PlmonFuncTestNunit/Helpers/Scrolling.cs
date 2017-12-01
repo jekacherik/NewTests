@@ -9,6 +9,21 @@ namespace PlmonFuncTestNunit.Helpers
     public static class Scrolling
     {
        
+       public static void  ClickInModal(string replaceWithPar, string replaceWithChild)
+        
+        {
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)PropertiesCollection.driver;
+            string path1 = Path.GetDirectoryName(Assembly.GetCallingAssembly().CodeBase);
+            string path2 = path1.Substring(0, path1.IndexOf("bin")) + ("Scripts\\clickInModal.js");
+            string path = new Uri(path2).LocalPath;
+
+
+            string jsString = File.ReadAllText(path);
+            //jsString.Replace("par", replaceWithPar);
+            //jsString.Replace("child", replaceWithChild);
+            executor.ExecuteScript(jsString);
+        }
+
         public static void ScrollToElement(string replaceWith)
         {
 

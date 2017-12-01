@@ -24,67 +24,99 @@ namespace PlmonFuncTestNunit.Tests.GUI
     {
         public CpSizeClass(string browserName, string user) : base(browserName, user) { }
 
-        [Test, Category("Function test Open CP")]
+        [Test]
         public void CheckSizeClass()
         {
             
-            var deskCP = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
-            deskCP.labelTitle();
-            deskCP.CheckLeftMenuDirectory("Measurements", "323");
+            var pageMenuCp = _pages.GetPage<MenuPageObject>().SwitchToMenuCP();
+            pageMenuCp.labelTitle();
+            pageMenuCp.CheckLeftMenuDirectory("Measurements", "323");
             SeleniumGetMethod.WaitForPageLoad(driver);
-            deskCP.SwitchToMain();
-            var desk = _pages.GetPage<MenuPageObject>();
-            desk.LeftFrameExpander();
+            pageMenuCp.SwitchToMain();
+            var pageMainCp = _pages.GetPage<MenuPageObject>();
+            pageMainCp.LeftFrameExpander();
             System.Threading.Thread.Sleep(1000);
-            var deskS = _pages.GetPage<PageObjects.CpMeasurements.SizeClass.View>();
-            deskS.searchExpander.Click();
+            var cpSiceClassView = _pages.GetPage<PageObjects.CpMeasurements.SizeClass.View>();
+            cpSiceClassView.searchExpander.Click();
             SeleniumGetMethod.WaitForPageLoad(driver);
-            deskS.txtSizeClassCode.SendKeys("test");
-            deskS.txtSizeClassName.SendKeys("test");
-            SeleniumSetMethods.SelectDropDown(deskS.drlActive, 2);
-            deskS.imgBtnSearch.Click();
-                        SeleniumGetMethod.WaitForPageLoad(driver);
-            deskS.searchExpander.Click();
-            deskS.txtSizeClassCode.SendKeys("test");
-            deskS.txtSizeClassName.SendKeys("test");
-            SeleniumSetMethods.SelectDropDown(deskS.drlActive, 1);
-            deskS.imgBtnSearch.Click();
-                        SeleniumGetMethod.WaitForPageLoad(driver);
-            deskS.searchExpander.Click();        
+            cpSiceClassView.txtSizeClassCode.SendKeys(Helpers.Randomizer.String(4, "qwertyuiop"));
+            cpSiceClassView.txtSizeClassName.SendKeys(Helpers.Randomizer.String(4, "qwertyuiop"));
+            SeleniumSetMethods.SelectDropDown(cpSiceClassView.drlActive, 2);
+            cpSiceClassView.imgBtnSearch.Click();
+            cpSiceClassView.searchExpander.Click();
+            cpSiceClassView.txtSizeClassCode.SendKeys(Helpers.Randomizer.String(4, "qwertyuiop"));
+            cpSiceClassView.txtSizeClassName.SendKeys(Helpers.Randomizer.String(4, "qwertyuiop"));
+            SeleniumSetMethods.SelectDropDown(cpSiceClassView.drlActive, 1);
+            cpSiceClassView.imgBtnSearch.Click();
+            SeleniumGetMethod.WaitForPageLoad(driver);
+            cpSiceClassView.searchExpander.Click();        
                     //grid sort
-            for (int i = 0; i < deskS.gridHeaders.Count; i++)
+            for (int i = 0; i < cpSiceClassView.gridHeaders.Count; i++)
             {
-                IWebElement header =  deskS.gridHeaders[i];
+                IWebElement header =  cpSiceClassView.gridHeaders[i];
                 Actions action = new Actions(driver);
                 action.MoveToElement(header).Click().Perform();
                 SeleniumGetMethod.WaitForPageLoad(driver);
             }
                      //clear all fields
-            deskS.searchExpander.Click();
-            new WebDriverWait(driver, TimeSpan.FromSeconds(3000)).Until(ExpectedConditions.ElementIsVisible(By.Id(deskS.txtSizeClassCode.GetAttribute("Id"))));
-            deskS.txtSizeClassCode.Clear();
-            deskS.txtSizeClassName.Clear();
-            SeleniumSetMethods.SelectDropDown(deskS.drlActive, 0);
-            deskS.imgBtnSearch.Click();
+            cpSiceClassView.searchExpander.Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(3000)).Until(ExpectedConditions.ElementIsVisible(By.Id(cpSiceClassView.txtSizeClassCode.GetAttribute("Id"))));
+            cpSiceClassView.txtSizeClassCode.Clear();
+            cpSiceClassView.txtSizeClassName.Clear();
+            SeleniumSetMethods.SelectDropDown(cpSiceClassView.drlActive, 0);
+            cpSiceClassView.imgBtnSearch.Click();
             SeleniumGetMethod.WaitForPageLoad(driver);
                      //check paging
             Paging paging = new Paging();
-            paging.CheckPaging(deskS.SizeClassPaging);
+            paging.CheckPaging(cpSiceClassView.SizeClassPaging);
             SeleniumGetMethod.WaitForPageLoad(driver);
                         //check EAV
             OpenEavEntityEditor openEav = new OpenEavEntityEditor();
-            openEav.OpenEavEditor(deskS.eavEditorOpenGrid);
-                             //CHECK CREATION
+            openEav.OpenEavEditor(cpSiceClassView.eavEditorOpenGrid);
+            /*--------------------------------------*///CHECK CREATION/*--------------------------------------------------------------*/
             System.Threading.Thread.Sleep(3000);
             SwitchToFrameHelper.ToControlPanelDictionary(driver);
-            deskS.btnNew.Click();
+            cpSiceClassView.btnNew.Click();
             SeleniumGetMethod.WaitForPageLoad(driver);
-            var deskN = _pages.GetPage<PageObjects.CpMeasurements.SizeClass.Create>();
-            deskN.btnSave.Click();
+            var cpSiceClassNew = _pages.GetPage<PageObjects.CpMeasurements.SizeClass.Create>();
+            cpSiceClassNew.btnSave.Click();
+                                                     openEav.OpenEavEditor(cpSiceClassNew.openEavEditor);
             System.Threading.Thread.Sleep(3000);
-                     //should be check for validators
-           
-
+            SwitchToFrameHelper.ToControlPanelDictionary(driver);
+            //Should be check for validators
+                    bool r = SeleniumGetMethod.IsElementExists(driver, cpSiceClassNew.validator);
+                    Console.WriteLine(r);
+            cpSiceClassNew.txtSizeClassCode.SendKeys(Helpers.Randomizer.Number(100, 200).ToString());
+            cpSiceClassNew.txtSizeClassName.SendKeys(Helpers.Randomizer.String(4, "qwertyuiop"));
+            SeleniumSetMethods.SelectDropDown(cpSiceClassNew.drlActive, 0);
+            WindowsMessages mes = new WindowsMessages();
+            cpSiceClassNew.btnSave.Click();
+            mes.IsAlertPresent();
+            System.Threading.Thread.Sleep(3000);
+                    //another value in Active drl
+            cpSiceClassView.btnNew.Click();    
+            System.Threading.Thread.Sleep(5000);
+            cpSiceClassNew.txtSizeClassCode.SendKeys(Helpers.Randomizer.Number(100, 200).ToString());
+            cpSiceClassNew.txtSizeClassName.SendKeys(Helpers.Randomizer.String(4, "qwertyuiop"));
+            SeleniumSetMethods.SelectDropDown(cpSiceClassNew.drlActive, 1);
+            cpSiceClassNew.btnSave.Click();
+            mes.IsAlertPresent();
+            /*--------------------------------------*///CHECK EDIT MODE/*------------------------------------------------------------------*/
+            pageMenuCp.SwitchToCPMenu();
+            pageMenuCp.CheckLeftMenuDirectory("Measurements");
+            pageMenuCp.CheckLeftMenuDirectory("Measurements", "323");
+            pageMenuCp.SwitchToMain();
+            var row1 = driver.FindElements(By.CssSelector(cpSiceClassView.tableRecords));
+            row1[0].Click();
+            System.Threading.Thread.Sleep(3000);
+            var cpSiceClassEdit = _pages.GetPage<PageObjects.CpMeasurements.SizeClass.Edit>();
+            cpSiceClassEdit.btnClose.Click();
+            SeleniumGetMethod.WaitForPageLoad(driver);
+            row1[0].Click();
+            cpSiceClassEdit.txtSizeClassCode.Clear();
+            cpSiceClassEdit.txtSizeClassCode.SendKeys(Helpers.Randomizer.Number(100, 200).ToString());
+            cpSiceClassEdit.txtSizeClassName.Clear();
+            cpSiceClassEdit.txtSizeClassName.SendKeys(Helpers.Randomizer.String(4, "qwertyuiop"));
         }
 
     }

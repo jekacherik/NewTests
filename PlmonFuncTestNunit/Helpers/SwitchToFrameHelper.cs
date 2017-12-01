@@ -16,5 +16,14 @@ namespace PlmonFuncTestNunit.Helpers
         public static void ToMainFrame(IWebDriver driver) => driver.SwitchTo().Frame("main");
         public static void ToControlPanelMenu(IWebDriver driver) => driver.SwitchTo().Frame("menuC");
         public static void ToControlPanelDictionary(IWebDriver driver) => driver.SwitchTo().Frame("mainC");
+        public static void ToPopUpFrame(IWebDriver driver) => driver.SwitchTo().Frame("");
+        
+        public static void GoToPopUpFrame(string elementInFrameSelector)
+        {
+            IWebElement el = PropertiesCollection.driver.FindElement(By.CssSelector(elementInFrameSelector));
+            PropertiesCollection.driver.SwitchTo().Frame(el);
+        }
+        
+
     }
 }

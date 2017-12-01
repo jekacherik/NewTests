@@ -15,7 +15,7 @@ using System.Globalization;
 
 namespace PlmonFuncTestNunit.Helpers
 {
-    class WindowsMessages
+    public class WindowsMessages
     {
         public bool IsAlertPresent()
         {
